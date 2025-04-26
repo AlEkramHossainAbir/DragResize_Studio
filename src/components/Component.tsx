@@ -12,11 +12,16 @@ const Component = ({ data, components, path, showId }) => {
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: COMPONENT, id: data.id, path },
+    type: COMPONENT,
+    item: () => ({
+      id: data.id,
+      path,
+    }),
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
+
 
   const opacity = isDragging ? 0 : 1;
   drag(ref);

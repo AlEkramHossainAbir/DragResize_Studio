@@ -15,14 +15,13 @@ const Row = ({
   path,
 }) => {
   const ref = useRef(null);
-
   const [{ isDragging }, drag] = useDrag({
-    item: {
-      type: ROW,
+    type: ROW,
+    item: () => ({
       id: data.id,
       children: data.children,
       path,
-    },
+    }),
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
